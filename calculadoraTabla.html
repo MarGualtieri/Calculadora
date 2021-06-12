@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./calculadoraTabla.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <title>Calculadora Tabla</title>
+
+    <style>
+
+*{
+    
+    margin: auto;
+    padding: 3px;
+    font-size: 18px;
+}
+#tabla{
+   background-color: rgb(160, 160, 160);
+    border-radius: 10px;
+}
+body{
+    margin: 0 auto;
+    background: rgb(0, 0, 0);
+}
+.numero{
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    font-size: 30px;
+    background-color: #fff;
+}
+.numero:hover{
+    color: rgb(255, 255, 255);
+    background-color: rgb(92, 108, 250);
+}
+#display{
+    font-size: 20px;
+    background-color: rgb(235, 255, 178);
+    text-align: right;
+}
+#buttonA{
+   background-color: rgb(97, 97, 97);
+   background-image: url("./img/eins.jpeg");
+   background-size: 50px;
+   background-repeat: no-repeat;
+}
+#buttonB{
+   background-color: rgb(97, 97, 97);
+   background-image: url("./img/hawk.jpg");
+   background-size: 50px;
+   background-repeat: no-repeat;
+}
+
+
+
+h1 {
+  text-align: center;
+  font-family: Tahoma, Arial, sans-serif;
+  color: #06D85F;
+  margin: 80px 0;
+}
+
+#box {
+ 
+  margin: 0 auto;
+  font-weight: bold;
+  background: rgb(253, 255, 165);
+  padding: 35px;
+  border: 2px solid rgb(255, 255, 255);
+ 
+  background-clip: padding-box;
+  text-align: center;
+}
+
+.buttonA {
+  width: 50px;
+  height: 50px;
+   background-image: url("./img/eins.jpeg");
+   background-size: 50px;
+   background-repeat: no-repeat;
+  cursor: pointer;
+  transition: all 0.1s ease-out;
+}
+.buttonA:hover {
+
+    background-image: url("./img/signo.jpg");
+    border-radius: 5px;
+}
+.buttonB {
+  width: 50px;
+  height: 50px;
+   background-image: url("./img/hawk.jpg");
+   background-size: 50px;
+   background-repeat: no-repeat;
+  cursor: pointer;
+  transition: all 0.1s ease-out;
+}
+.buttonB:hover {
+
+    background-image: url("./img/signo.jpg");
+    border-radius: 5px;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+}
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup {
+  margin: 70px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 30%;
+  position: relative;
+  transition: all 5s ease-in-out;
+}
+
+.popup h2 {
+  margin-top: 0;
+  color: #333;
+  font-family: Tahoma, Arial, sans-serif;
+}
+.popup .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+.popup .close:hover {
+  color: #06D85F;
+}
+.popup .content {
+  max-height: 30%;
+  overflow: auto;
+}
+
+@media screen and (max-width: 700px){
+  .box{
+    width: 70%;
+  }
+  .popup{
+    width: 70%;
+  }
+}
+
+
+    </style>
+</head>
+<body>
+   
+    <div class="container">
+        <div class="row ">
+         
+         
+            <div class="col-12 d-flex justify-content-center">
+
+            <table id="tabla" width="15%" border="1" >
+    
+                <tr >
+                    <td colspan="4">
+                        <input  maxlength="9" name="display" type="text" class="color_display" id="display" size="25" >
+                    </td>
+                </tr>
+                  <tr align="center">
+                    <td width="10%"><a type="button" class="buttonA" href="#popup1"></a></td>
+                    <td width="10%"><a type="button" class="buttonB" href="#popup2"></a></td>
+                    <td width="10%"><input name="button" type="button" class="numero" id="button" value="c" onclick="borrar()"></td>
+                    <td width="10%"><input name="button" type="button" class="numero" id="button" value="+" onclick="suma()"></td>
+        
+                </tr>
+                <tr align="center">
+                    <td><input name="num7" type="button" class="numero" id="num7" value="7" onclick="display_numeros(7)"></td>
+                    <td><input name="num8" type="button" class="numero" id="num8" value="8" onclick="display_numeros(8)"></td>
+                    <td><input name="num9" type="button" class="numero" id="num9" value="9" onclick="display_numeros(9)"></td>
+                    <td width="10%"><input name="button2" type="button" class="numero" id="button2" value="-" onclick="resta()"></td>
+        
+                 </tr>
+                 <tr align="center">
+                    <td><input name="num4" type="button" class="numero" id="num4" value="4" onclick="display_numeros(4)"></td>
+                    <td><input name="num5" type="button" class="numero" id="num5" value="5" onclick="display_numeros(5)"></td>
+                    <td><input name="num6" type="button" class="numero" id="num6" value="6" onclick="display_numeros(6)"></td>
+                    <td width="10%"><input name="button3" type="button" class="numero" id="button3" value="*" onclick="multiplicar()"></td>
+                 </tr>
+                 <tr align="center">
+                    <td><input name="num1" type="button" class="numero" id="num1" value="1" onclick="display_numeros(1)"></td>
+                    <td><input name="num2" type="button" class="numero" id="num2" value="2" onclick="display_numeros(2)"></td>
+                    <td><input name="num3" type="button" class="numero" id="num3" value="3" onclick="display_numeros(3)"></td>
+                    <td width="10%"><input name="button4" type="button" class="numero" id="button4" value="/"></td>
+                 </tr>
+                 <tr align="center">
+                    <td><input name="num." type="button" class="numero" id="num." value="."></td>
+                    <td><input name="num0" type="button" class="numero" id="num0" value="0" onclick="display_numeros(0)"></td>
+                    <td><input name="num=" type="button" class="numero" id="num=" value="=" onclick="resultado()"></td>
+                    <td><input name="num%" type="button" class="numero" id="num%" value="%" onclick="porcentaje()"></td>
+                 </tr>
+        </table>
+    </div>
+  
+</div>
+</div>
+
+
+<div id="box" class="col-12 d-flex justify-content-center">
+ Calculadora Simple:
+ Realizada con HTML,CSS y Javascript 
+
+</div>
+<div class="col-12 d-flex justify-content-center" style="padding: 10px" >
+   <button type="button" class="btn btn-primary" style="background-color: #ff9100" onclick="parent.location.href='web.html'">VOLVER</button>
+  </div>
+
+
+
+<div id="popup1" class="overlay">
+  <div class="popup">
+    <h2>Albert Einstein</h2>
+    <a class="close" href="#">&times;</a>
+    <div class="content">
+        "La mente es como un paracaídas… Sólo funciona si la tenemos abierta".    </div>
+  </div>
+</div>
+<div id="popup2" class="overlay">
+    <div class="popup">
+      <h2>Stephen Hawking</h2>
+      <a class="close" href="#">&times;</a>
+      <div class="content">
+         “El peor enemigo del conocimiento no es la ignorancia, es la ilusión del conocimiento”.    </div>
+  </div>
+
+
+<script>document.getElementById("display").value=0;</script>
+</html>
